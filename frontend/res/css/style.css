@@ -37,9 +37,9 @@ html::-webkit-scrollbar-thumb{
     background: #fff;
     border-radius: 5rem;
 }
-body{
-    background: var(--bg);
-}
+/*body{
+     background: var(--bg); 
+} */
 .header{
     background: var(--bg);
     display: flex;
@@ -76,7 +76,7 @@ body{
 }
 #menu-btn{
     display: none;
-}
+} 
 .header .search-form{
     position: absolute;
     top: 115%; right: 7%;
