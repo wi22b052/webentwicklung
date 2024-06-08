@@ -27,31 +27,9 @@ integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/
 <script src="frontend/js/script.js"></script>
 </head>
 <body>
-<!--Header Section-->
-<header class="header">
-<a href="#" class="logo">
-        <img src="frontend/res/img/test.jpg" alt="">
-    </a>
-    <nav class="navbar">
-        <a href="../../index.html">home</a>
-        <a href="#about">about</a>
-        <a href="#shop">shop</a>
-        <a href="#review">review</a>
-        <a href="#contact">contact</a>
-    </nav>
-    <div class="icons">
-        <i class="fa-solid fa-user" id="konto-btn"></i>
-        <i class="fa-solid fa-heart" id="wish-btn"></i>
-        <i class="fas fa-shopping-cart" id="card-btn"></i>
-        <i class="fas fa-search" id="search-btn"></i>
-        <i class="fa-solid fa-bars" id="menu-btn"></i>
-    </div>
-    <div class="search-form">
-        <input type="search" id="search-box" placeholder="Suche">
-        <label for="search-box" class="fas fa-search"></label>
-    </div>
-
-</header>
+<?php
+include '../pages/header.php'
+?>
 <br>
 <br>
 <br>
