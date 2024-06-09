@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LogIn</title>
+    <title>Einkaufskorb</title>
     <!--font awesome cdn link-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
 integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
 crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-K6uIw7i6H6I4o1mg05f7fZu0sp6/i7v9U+nhXQIR3I=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- Bootstrap JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
@@ -24,34 +24,23 @@ integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/
 <!--css file-->
 <link rel="stylesheet" href="../res/css/style.css">
 <!--js file-->
-<script src="frontend/js/script.js"></script>
+
+<script src="../js/script.js"></script>
 </head>
 
 <body>
-<!--Header Section-->
-<header class="header">
-<a href="#" class="logo">
-        <img src="frontend/res/img/test.jpg" alt="">
-    </a>
-    <nav class="navbar">
-        <a href="../webentwicklung-1/index.html">home</a>
-        <a href="#about">about</a>
-        <a href="#shop">shop</a>
-        <a href="#review">review</a>
-        <a href="#contact">contact</a>
-    </nav>
-    <div class="icons">
-        <i class="fa-solid fa-user" id="konto-btn" onclick="openLogin()"></i>
-        <i class="fa-solid fa-heart" id="wish-btn"></i>
-        <i class="fas fa-shopping-cart" id="card-btn"></i>
-        <i class="fas fa-search" id="search-btn"></i>
-        <i class="fa-solid fa-bars" id="menu-btn"></i>
-    </div>
-    <div class="search-form">
-        <input type="search" id="search-box" placeholder="Suche">
-        <label for="search-box" class="fas fa-search"></label>
-    </div>
-</header>
+<?php
+include '../pages/header.php'
+?>
+
+Folgendes muss noch gelöscht werden und davor in CSS überarbeitet werden, damit es schön aussieht.
+  <p>a</p>
+  <p>a</p>
+  <p>a</p>
+  <p>a</p>
+  <p>a</p>
+  <p>a</p>
+  <p>a</p>
 <br>
 <br>
 <br>

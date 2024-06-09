@@ -42,6 +42,8 @@ Folgendes muss noch gelöscht werden und davor in CSS überarbeitet werden, dami
   <p>a</p>
   <p>a</p>
 
-  
+<div id="cartproducts">  
+</div>
+
 </body>
 </html>
