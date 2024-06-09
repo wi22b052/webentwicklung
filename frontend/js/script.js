@@ -25,11 +25,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+let cart = [];
+
 $(document).ready(function () {
     $("#btn_Kat").click(function (e) {
         loadProductyByCategory($("#kategorie").val());
      });
+    loadCart();
 });
+
+$(document).on("click",".product",addtoCart);
 
 function loaddata() {
     $.ajax({
@@ -46,13 +51,13 @@ function loaddata() {
                 var price = val["price"];
                 var desc = val["description"];
                 var stock = val["stock"];
-                $("#products").append("<div id="+id+"> <h2>"+name+"</h2> </div>");
+                $("#products").append("<div id="+id+"<h2>"+name+"</h2> </div>");
                 $("#"+id).append("insert foto"+"<br>")
                 $("#"+id).append("ID: "+id)
                 $("#"+id).append("<h3>Preis: "+price+"</h3>")
                 $("#"+id).append("aktueller Lagerstand: "+stock+"<br>")
                 $("#"+id).append("Beschreibung: "+desc+"<br>")
-                $("#"+id).append("In den Warenkorb legen")
+                $("#"+id).append("<p class='product'>In den Warenkorb legen</p>")
                 $("#"+id).append("<br>")
 
                 //$("#poi-list").append("<li id="+key+" class='poi-item list-group-item'>"+name+"</li>")
@@ -90,7 +95,7 @@ function loadProductyByCategory(category) {
                 $("#"+id).append("<h3>Preis: "+price+"</h3>")
                 $("#"+id).append("aktueller Lagerstand: "+stock+"<br>")
                 $("#"+id).append("Beschreibung: "+desc+"<br>")
-                $("#"+id).append("In den Warenkorb legen")
+                $("#"+id).append("<p id="+id+" class='product'>In den Warenkorb legen</p>")
                 $("#"+id).append("<br>")
 
                 //$("#poi-list").append("<li id="+key+" class='poi-item list-group-item'>"+name+"</li>")
@@ -101,6 +106,21 @@ function loadProductyByCategory(category) {
             console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
         }
         
+    });
+}
+
+function addtoCart(){
+    console.log("Zum Warenkorb hinzufügen aufgerufen");
+    var triggerElement = $(this).attr("id");
+    console.log(triggerElement);
+    cart.push(triggerElement);
+    $("#currentAmount").text(cart.length);
+    console.log(cart);
+}
+
+function loadCart(){
+    cart.forEach(function(element, index){
+        $("#cartproducts").append("<div id="+element+">"+element+"</div>")
     });
 }
 

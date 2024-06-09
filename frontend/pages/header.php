@@ -1,7 +1,7 @@
 <!--Header Section-->
 <header class="header">
 <a href="#" class="logo">
-        <img src="../res/img/logo.png" alt="">
+        <img href="../pages" src="../res/img/logo.png" alt="">
     </a>
     <nav class="navbar">
         <a href="../pages">Home</a>
@@ -14,6 +14,7 @@
         </a>
         <a href="../pages/cart.php">
             <i class="fas fa-shopping-cart" id="card-btn"></i>
+            <h1 id="currentAmount">0</h1>
         </a>    
         <i class="fas fa-search" id="search-btn"></i>
         <i class="fa-solid fa-bars" id="menu-btn"></i>
