@@ -1,7 +1,7 @@
 <!--Header Section-->
 <header class="header">
 <a href="#" class="logo">
-        <img src="frontend/res/img/test.jpg" alt="">
+        <img src="../res/img/logo.png" alt="">
     </a>
     <nav class="navbar">
         <a href="../pages">Home</a>

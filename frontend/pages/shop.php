@@ -11,7 +11,7 @@ integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pB
 crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-K6uIw7i6H6I4o1mg05f7fZu0sp6/i7v9U+nhXQIR3I=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- Bootstrap JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
@@ -24,12 +24,18 @@ integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/
 <!--css file-->
 <link rel="stylesheet" href="../res/css/style.css">
 <!--js file-->
-<script src="frontend/js/script.js"></script>
+
+<script src="../js/script.js"></script>
 </head>
 
 <body>
 <?php
 include '../pages/header.php'
 ?>
+
+<div id="products">
+</div>
+
+
 </body>
 </html>
