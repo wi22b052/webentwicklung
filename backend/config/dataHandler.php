@@ -36,10 +36,31 @@ class DataHandler
             $products[] = new Product(
                 $row['id'],
                 $row['name'],
-                $row['description'],
                 $row['price'],
+                $row['description'],
                 $row['stock'],
                 $row['created_at'],
+                $row['category'],
+            );
+        }
+        return $products;
+    }
+
+    public function queryProductsByCategory($param)
+    {
+        $stmt = $this->db->query("SELECT * FROM `products` WHERE `category` = '$param'");
+        $res = $stmt->fetchAll();
+        $products = [];
+
+        foreach ($res as $row){
+            $products[] = new Product(
+                $row['id'],
+                $row['name'],
+                $row['price'],
+                $row['description'],
+                $row['stock'],
+                $row['created_at'],
+                $row['category'],
             );
         }
         return $products;

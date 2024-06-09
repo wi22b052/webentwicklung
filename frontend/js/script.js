@@ -26,8 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 $(document).ready(function () {
-    console.log("Startfunktion aufgerufen");
-    loaddata();
+    $("#btn_Kat").click(function (e) {
+        loadProductyByCategory($("#kategorie").val());
+     });
 });
 
 function loaddata() {
@@ -38,7 +39,63 @@ function loaddata() {
         data: {method: "queryProducts"},
         dataType: "json",
         success: function (response) {
-            console.log(response);
+                console.log(response)
+            $.each(response, function( key, val ) {  
+                var name = val["name"];
+                var id = val["id"];
+                var price = val["price"];
+                var desc = val["description"];
+                var stock = val["stock"];
+                $("#products").append("<div id="+id+"> <h2>"+name+"</h2> </div>");
+                $("#"+id).append("insert foto"+"<br>")
+                $("#"+id).append("ID: "+id)
+                $("#"+id).append("<h3>Preis: "+price+"</h3>")
+                $("#"+id).append("aktueller Lagerstand: "+stock+"<br>")
+                $("#"+id).append("Beschreibung: "+desc+"<br>")
+                $("#"+id).append("In den Warenkorb legen")
+                $("#"+id).append("<br>")
+
+                //$("#poi-list").append("<li id="+key+" class='poi-item list-group-item'>"+name+"</li>")
+            });
+
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
+        }
+        
+    });
+}
+
+function loadProductyByCategory(category) {
+    console.log("Funktion aufgerufen")
+    console.log(category)
+    $.ajax({
+        type: "GET",
+        url: "../../backend/serviceHandler.php",
+        cache: false,
+        data: {method: "queryProductsByCategory", param: category},
+        dataType: "json",
+        success: function (response) {
+                console.log(response)
+                $("#products").empty();
+            $.each(response, function( key, val ) {  
+                var name = val["name"];
+                var id = val["id"];
+                var price = val["price"];
+                var desc = val["description"];
+                var stock = val["stock"];
+                $("#products").append("<div id="+id+"> <h2>"+name+"</h2> </div>");
+                $("#"+id).append("insert foto"+"<br>")
+                $("#"+id).append("ID: "+id)
+                $("#"+id).append("<h3>Preis: "+price+"</h3>")
+                $("#"+id).append("aktueller Lagerstand: "+stock+"<br>")
+                $("#"+id).append("Beschreibung: "+desc+"<br>")
+                $("#"+id).append("In den Warenkorb legen")
+                $("#"+id).append("<br>")
+
+                //$("#poi-list").append("<li id="+key+" class='poi-item list-group-item'>"+name+"</li>")
+            });
+
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);

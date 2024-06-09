@@ -2,7 +2,7 @@
 include("logic/product.php");
 
 $param = "";
-$method ="";
+$method = "";
 
 isset($_GET["method"]) ? $method = $_GET["method"] : false;
 isset($_GET["param"]) ? $param = $_GET["param"] : false;

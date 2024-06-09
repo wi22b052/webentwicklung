@@ -14,9 +14,12 @@ class SimpleLogic
     function handleRequest($method, $param)
     {
         switch ($method) {
-
             case "queryProducts":
                 $res = $this->dh->queryProducts();
+                break;
+            
+            case "queryProductsByCategory":
+                $res = $this->dh->queryProductsByCategory($param);
                 break;
 
             default:
