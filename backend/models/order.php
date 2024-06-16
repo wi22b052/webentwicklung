@@ -1,14 +1,18 @@
 <?php
-class Product {
+class Order {
     public $id;
-    public $product;
-    public $amount;
-    public $date;
+    public $user_id;
+    public $order_date;
+    public $products;
+    public $quantities;
+    public $prices;
     
-    function __construct($id, $product, $amount, $date){
+    function __construct($id, $user_id, $order_date,$products,$quantities,$prices) {
         $this->id = $id;
-        $this->product = $product;
-        $this->amount = $amount;
-        $this->date = $date;
+        $this->user_id = $user_id;
+        $this->order_date = $order_date;
+        $this->products = $products;
+        $this->quantities = $quantities;
+        $this->prices = $prices;
     }
 }

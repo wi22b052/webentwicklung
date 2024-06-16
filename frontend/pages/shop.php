@@ -44,6 +44,12 @@ Folgendes muss noch gelöscht werden und davor in CSS überarbeitet werden, dami
 
 <input type="text" class="form-control" id="kategorie" placeholder="Kategorie eingeben">
 <button type="button" class="btn btn-success" id="btn_Kat">Produkte laden</button>
+<br>
+<form id="searchForm">
+    <input type="text" id="searchInput" placeholder="Produktsuche...">
+</form>
+<div id="searchResults"></div>
+
 
 <div id="products">  
 </div>

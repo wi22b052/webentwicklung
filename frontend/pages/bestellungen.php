@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Einkaufskorb</title>
+    <title>Shop</title>
     <!--font awesome cdn link-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
 integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
 crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -41,38 +41,11 @@ Folgendes muss noch gelöscht werden und davor in CSS überarbeitet werden, dami
   <p>a</p>
   <p>a</p>
   <p>a</p>
-<br>
-<br>
-<br>
-<br>
-<h1>LogIn</h1>
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Du hast schon ein Konto?</h5>
-      <p class="card-text"><fieldset>
-        <form id="login">
-            <label for="username">Benutzername</label><br>
-            <input class="form-control" required type="text" id="username" name="username"><br>
-            <label for="pword1">Passwort</label><br>
-            <input type="password" id="pword" name="pword" /> <br><br>
-            <button type="submit" class="btn btn-primary">Anmelden</b>
-        </form>
-    </fieldset></p>
-      
-    </div>
-  </div>
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Du bist noch nicht registriert?</h5>
-      <p class="card-text">
-        Übersicht über deine Bestellungen
-        Deine Wunschliste auf allen Geräten
-        Schnellerer, simpler Checkout
-    </p>
-      <a href="reg.html" class="btn btn-primary">Jetzt registrieren</a>
-    </div>
-  </div>
 
-    
+<br>
+<div id="orders">
+</div>
+
+
 </body>
 </html>

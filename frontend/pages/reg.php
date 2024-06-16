@@ -45,38 +45,36 @@ Folgendes muss noch gelöscht werden und davor in CSS überarbeitet werden, dami
 <br>
 <br>
 <br>
-<h1>Regestrierung</h1>
-<div class="card" style="width: 18rem;">
+<h1>Registrierung</h1>
+<div class="card">
     <div class="card-body">
       <h5 class="card-title">Möchtest du ein Fun4Fans Konto anlegen?</h5>
-      <p class="card-text"><fieldset>
-        <form action="#" method="POST">
+      <p class="card-text">
+        <form id="registrierung">
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioDisabled" disabled>
-                <label class="form-check-label" for="flexRadioDisabled">
-                  Mann 
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" checked disabled>
-                <label class="form-check-label" for="flexRadioCheckedDisabled">
-                  Frau 
-                </label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" checked disabled>
-                    <label class="form-check-label" for="flexRadioCheckedDisabled">
-                     Divers
-                    </label>
-              </div>
+            <label for="anrede"  class="form-label">Geschlecht</label>
+                  <select id="anrede" name="anrede" class="form-control" required>
+                                <option>männlich</option>
+                                <option>weiblich</option>
+                                <option>divers</option>
+                  </select><br>
             <label for="fname">Vorname</label><br>
             <input type="text" id="fname" name="fname" required /><br><br>
             <label for="lname">Nachname</label><br>
             <input type="text" id="lname" name="lname" required /><br><br>
+            <label for="lname">Adresse</label><br>
+            <input type="text" id="adresse" name="adresse" required /><br><br>
+            <label for="lname">PLZ</label><br>
+            <input type="text" id="plz" name="plz" required /><br><br>
+            <label for="lname">Ort</label><br>
+            <input type="text" id="ort" name="ort" required /><br><br>
+            <label for="lname">Benutzername</label><br>
+            <input type="text" id="username" name="username" required /><br><br>
             <label for="email">E-Mail-Adresse</label><br>
-            <input class="form-control" required type="email" name="email" placeholder="E-Mail-Adresse" ><br>
+            <input class="form-control" id="email" required type="email" name="email" placeholder="E-Mail-Adresse" ><br>
              <!-- Eingabe des Passworts -->
              <label for="pword">Passwort*<br>Das Passwort muss aus 5-16 Zeichen bestehen.</label><br>
-             <input type="password" id="pword1" name="pword1" minlength="5" maxlength="16" required placeholder="Passwort"><br><br>
+             <input type="text" id="pword" name="pword1" minlength="5" maxlength="16" required placeholder="Passwort"><br><br>
              <!-- Wiederholung der Passworteingabe -->
              <label for="pword">Passwort wiederholen*</label><br>
              <input type="password" id="pword2" name="pword2" minlength="5" maxlength="16" required placeholder="Passwort wiederholen">
@@ -89,9 +87,9 @@ Folgendes muss noch gelöscht werden und davor in CSS überarbeitet werden, dami
               </div>
               <p> Wir nutzen die E-Mail-Adresse für die Zusendung von Informationen rund um deine Bestellung. Eine Abmeldung ist jederzeit möglich</p>
               <p>Mit der Absendung meiner Registrierung stimme ich Datenschutzrichtlinien zu.</p>
+              <button type="submit">Registrierung absenden</button>
             </form>
-    </fieldset></p>
-      <a href="#" class="btn btn-primary">Regestrierung absenden</a>
+    </p>
     </div>
   </div>
 
