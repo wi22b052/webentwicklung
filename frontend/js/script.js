@@ -1,8 +1,17 @@
 $(document).ready(function () {
+
+    //Dinge die immer ausgeführt werden
+    loadCart();
+    loadOrders();
+    loadRechnung();
+    $('#order').hide();
+
+    //Dinge, die ausgeführt werden, wenn etwas zutritt/passiert
     $("#btn_Kat").click(function (e) {
         loadProductyByCategory($("#kategorie").val());
      });
-    loadCart();
+    
+
     $('#registrierung').on('submit', function(event) {
         event.preventDefault();
         registerUser();
@@ -27,10 +36,13 @@ $(document).ready(function () {
     })
 });
 
+//Funktionen, die bei Klick auf eine ID/Klasse ausgeführt werden.
 $(document).on("click",".product",addtoCart);
 $(document).on("click",".edit",editProduct);
 $(document).on("click",".add",addOnetoCart);
 $(document).on("click",".subtract",subtractfromCard);
+$(document).on("click","#order",order);
+$(document).on("click",".rechnung",rechnung);
 
 function groupAndCount(array) {
     const counts = {};
@@ -170,6 +182,7 @@ function loadCart(){
                             $("#"+id).append("<button id='"+id+"' class='subtract'>Anzahl um 1 reduzieren</button>")
                             total_cost += price*amount
                             $('#total').text("Gesamtkosten: "+total_cost)
+                            $('#order').show();
                         })
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
@@ -362,3 +375,113 @@ function searchProducts(){
         }  
     })
 }
+
+function order(){
+    console.log("Bestellung aufgerufen");
+}
+
+function loadOrders(){
+    $.ajax({
+        type: "GET",
+        url: "../../backend/serviceHandler.php",
+        cache: false,
+        data: {method: "loadOrders"},
+        dataType: "json",
+        success: function (response) {
+            $.each(response, function( key, val ) {  
+                var id = val["id"];
+                var order_date = val["order_date"];
+                var prices = val["prices"];
+                var products = val["products"];
+                var quantities = val["quantities"];
+                $("#orders").append("<div id=or"+id+"> <h2>Bestellung Nummer "+id+"</h2> </div>");
+                $("#or"+id).append("Datum: "+order_date)
+                $("#or"+id).append("<p id=r"+id+" class='rechnung'>Rechnung erstellen</p>")
+                $("#or"+id).append("<br>")
+            });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
+        }  
+    })
+}
+
+function rechnung(){
+    var triggerElement = $(this).attr("id").substring(1);
+    console.log(triggerElement);
+
+    $.ajax({
+        type: "GET",
+        url: "../../backend/serviceHandler.php",
+        cache: false,
+        data: {method: "loadOrderByID", param: triggerElement},
+        dataType: "json",
+        success: function (response) {
+            console.log(response)
+            localStorage.setItem('order', JSON.stringify(response));
+            window.open('../pages/rechnung.html', '_blank');
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
+        }  
+    })
+}
+
+function loadRechnung(){
+    var total_price = 0;
+    var order = JSON.parse(localStorage.getItem('order'));
+    console.log(order);
+    $('#nummer').text('Rechnungsnummer: '+order['id']);
+    $('#datum').text('Datum: '+order['order_date']);
+
+    $.each(order['products'], function(key,val) {
+        pr_nm = key+1;
+        console.log(val)
+    $("#rechnungsprodukte").append("<div id=pr"+val+"> <h2>Produkt Nummer "+pr_nm+"</h2> </div>");
+        
+
+        $.ajax({
+            type: "GET",
+            url: "../../backend/serviceHandler.php",
+            cache: false,
+            data: {method: "loadProductByID", param: val},
+            dataType: "json",
+            success: function (response) {
+                $.each(response, function(key, values) {
+                    nam = values["name"];
+                    $("#pr"+val).append("ID: "+val)
+                    $("#pr"+val).append("<br>Name: "+nam);
+                    $("#pr"+val).append("<br>Menge: "+order['quantities'][key])
+                    $("#pr"+val).append("<br>Preis pro Stück: "+order['prices'][key])
+                    $("#pr"+val).append("<br>Preis: "+order['quantities'][key] * order['prices'][key]);
+                    $("#pr"+val).append("<br>")
+                    $("#pr"+val).append("<br>")
+                    total_price += order['quantities'][key] * order['prices'][key];
+                    console.log(total_price)
+                    $("#total").text("Gesamtsumme: "+total_price)
+                })
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
+            }  
+        })
+
+        $.ajax({
+            type: "GET",
+            url: "../../backend/serviceHandler.php",
+            cache: false,
+            data: {method: "getUserData"},
+            dataType: "json",
+            success: function (response) {
+                $("#anschrift").html("Anschrift:<br>"+response["adresse"]+"<br>"+response["plz"]+" "+response["ort"])
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
+            }  
+        })
+
+    })
+}
+    
+
+

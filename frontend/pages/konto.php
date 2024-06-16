@@ -26,6 +26,7 @@ integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/
 <!--js file-->
 
 <script src="../js/script.js"></script>
+<script src="../js/stammdaten.js"></script>
 </head>
 
 <body>
@@ -46,49 +47,45 @@ Folgendes muss noch gelöscht werden und davor in CSS überarbeitet werden, dami
 <br>
 <br>
     
-    <div class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card p-4 shadow">
-                    <h1 class="text-center mb-4">Ihr Profil</h1>
-                    <p class="text-center">Um ihre Daten zu ändern, bitte die neuen Daten eingeben und auf Speichern drücken. Aus Sicherheitsgründen muss dies mit der Eingabe des Passwortes bestätigt werden.</p>
-                    <form action="profil.php" method="post">
-                        <div class="mb-3">  
-                            <label for="anrede"  class="form-label">Geschlecht</label>
-                            <select id="anrede" name="anrede" class="form-control" required>
+<h1>Stammdaten</h1>
+<div id="stammdaten" class="card">
+    <div class="card-body">
+      <h5 class="card-title">Möchtest du ein Fun4Fans Konto anlegen?</h5>
+      <p class="card-text">
+        <form id="changeData">
+            <div class="form-check">
+            <label for="anrede"  class="form-label">Geschlecht</label>
+                  <select id="anrede" name="anrede" class="form-control" required>
                                 <option>männlich</option>
                                 <option>weiblich</option>
                                 <option>divers</option>
-                                </select>
-                            </div>
-                        <div class="mb-3">  
-                                <label for="mail" class="form-label">Email-Adresse</label>
-                                <input type="email" class="form-control" id="mail" name="mail" placeholder="name@example.com" value=<?php echo $_SESSION["uMail"]?> required>
-                            </div>
-                        <div class="mb-3">  
-                                <label for="mail" class="form-label">Vorname</label>
-                                <input type="text" class="form-control" id="vorname"  name="vorname" placeholder="Vorname" value=<?php echo $_SESSION["uVorname"]?> required>
-                            </div>
-                        <div class="mb-3">  
-                                <label for="mail" class="form-label">Nachname</label>
-                                <input type="text" class="form-control" id="nachname" name="nachname" placeholder="Nachname" value=<?php echo $_SESSION["uNachname"]?> required>
-                            </div>
-                        <div class="mb-3">  
-                                <label for="mail" class="form-label">Benutzername</label>
-                                <input type="text" class="form-control" id="username" name="username" placeholder="Benutzername" value=<?php echo $_SESSION["Benutzer"]?> required>
-                            </div>
-                        <div class="mb-3">  
-                                <label for="mail" class="form-label">Passwort</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Passwort" required>
-                            </div>
-                        <div class="mb-3">  
-                                <label for="mail" class="form-label">Passwort wiederholen</label>
-                                <input type="password" class="form-control" id="password2" name="password2" placeholder="Passwort wiederholen" required>
-                        </div>
-
-                        <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary">Daten ändern</button>
-                                <button type="reset" class="btn btn-secondary">Änderungen verwerfen</button>
-                        </div>
+                  </select><br>
+            <label for="fname">Vorname</label><br>
+            <input type="text" id="fname" name="fname" required /><br><br>
+            <label for="lname">Nachname</label><br>
+            <input type="text" id="lname" name="lname" required /><br><br>
+            <label for="lname">Adresse</label><br>
+            <input type="text" id="adresse" name="adresse" required /><br><br>
+            <label for="lname">PLZ</label><br>
+            <input type="text" id="plz" name="plz" required /><br><br>
+            <label for="lname">Ort</label><br>
+            <input type="text" id="ort" name="ort" required /><br><br>
+            <label for="lname">Benutzername</label><br>
+            <input type="text" id="username" name="username" required /><br><br>
+            <label for="email">E-Mail-Adresse</label><br>
+            <input class="form-control" id="email" required type="email" name="email" placeholder="E-Mail-Adresse" ><br>
+             <!-- Eingabe des Passworts -->
+             <label for="pword">Passwort*<br>Das Passwort muss aus 5-16 Zeichen bestehen.</label><br>
+             <input type="password" id="pword" name="pword1" minlength="5" maxlength="16" required placeholder="Passwort"><br><br>
+             <!-- Wiederholung der Passworteingabe -->
+             <label for="pword">Passwort wiederholen*</label><br>
+             <input type="password" id="pword2" name="pword2" minlength="5" maxlength="16" required placeholder="Passwort wiederholen">
+             <br>
+             <br>
+             <button id="update" type="submit">Änderungen bestätigen</button>
+            </form>
+    </p>
+    </div>
+  </div>
 
 </body>

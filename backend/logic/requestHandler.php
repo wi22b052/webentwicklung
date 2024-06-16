@@ -53,6 +53,22 @@ class SimpleLogic
             case "searchProducts":
                 $res = $this->dh->searchProducts($param);
                 break;
+            
+            case "getUserData":
+                $res = $this->dh->getUserData();
+                break;
+            
+            case "updateUser":
+                $res = $this->dh->updateUser($param);
+                break;
+
+            case "loadOrders":
+                $res = $this->dh->loadOrders();
+                break;
+
+            case "loadOrderByID":
+                $res = $this->dh->loadOrderByID($param);
+                break;
 
             default:
                 $res = null;

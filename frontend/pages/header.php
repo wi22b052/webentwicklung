@@ -16,9 +16,12 @@ $elemente_in_Warenkorb = count($_SESSION['cart']);
          ?>
                 <li><a href="admin_produkte.php">Produkte bearbeiten</a></li>
                 <li><a href="admin_kunden.php">Kunden bearbeiten</a></li>
+                <li><a href="logout.php">Logout</a></li>
         <?php } elseif(isset($_SESSION['rolle']) && $_SESSION['rolle'] == 2) {
             ?>
                 <li><a href="logout.php">Logout</a></li>
+                <li><a href="bestellungen.php">Bestellungen</a></li>
+                <li><a href="konto.php">Profil</a></li>
             <?php
         }else{
         ?>

@@ -45,7 +45,7 @@ Folgendes muss noch gelöscht werden und davor in CSS überarbeitet werden, dami
 <br>
 <br>
 <br>
-<h1>Regestrierung</h1>
+<h1>Registrierung</h1>
 <div class="card">
     <div class="card-body">
       <h5 class="card-title">Möchtest du ein Fun4Fans Konto anlegen?</h5>

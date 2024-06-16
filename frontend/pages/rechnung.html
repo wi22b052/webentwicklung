@@ -1,10 +1,9 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Einkaufskorb</title>
+    <title>Rechnung</title>
     <!--font awesome cdn link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
 integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
@@ -27,27 +26,17 @@ integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/
 
 <script src="../js/script.js"></script>
 </head>
-
 <body>
-<?php
-include '../pages/header.php'
-?>
-
-Folgendes muss noch gelöscht werden und davor in CSS überarbeitet werden, damit es schön aussieht.
-  <p>a</p>
-  <p>a</p>
-  <p>a</p>
-  <p>a</p>
-  <p>a</p>
-  <p>a</p>
-  <p>a</p>
-
-  
-<div id="cartproducts">  
-</div>
-<br>
-<h1 id="total"></h1>
-<h1 id="order">Bestellen</h1>
-
+    <h1>Rechnung der Fun4Fans GmbH</h1>
+    <br>
+    <h2 id="nummer">Rechnungsnummer: </h2>
+    <br>
+    <h2 id="datum">Rechnungsdatum: </h2>
+    <br>
+    <h2 id="anschrift">Anschrift: </h2>
+    <br>
+    <div id="rechnungsprodukte"></div>
+    <br>
+    <h2 id="total">Gesamtsumme: </h2>
 </body>
 </html>
