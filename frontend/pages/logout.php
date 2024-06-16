@@ -41,38 +41,14 @@ Folgendes muss noch gelöscht werden und davor in CSS überarbeitet werden, dami
   <p>a</p>
   <p>a</p>
   <p>a</p>
-<br>
-<br>
-<br>
-<br>
-<h1>LogIn</h1>
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Du hast schon ein Konto?</h5>
-      <p class="card-text"><fieldset>
-        <form id="login">
-            <label for="username">Benutzername</label><br>
-            <input class="form-control" required type="text" id="username" name="username"><br>
-            <label for="pword1">Passwort</label><br>
-            <input type="password" id="pword" name="pword" /> <br><br>
-            <button type="submit" class="btn btn-primary">Anmelden</b>
-        </form>
-    </fieldset></p>
-      
-    </div>
-  </div>
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Du bist noch nicht registriert?</h5>
-      <p class="card-text">
-        Übersicht über deine Bestellungen
-        Deine Wunschliste auf allen Geräten
-        Schnellerer, simpler Checkout
-    </p>
-      <a href="reg.html" class="btn btn-primary">Jetzt registrieren</a>
-    </div>
-  </div>
+  <p>a</p>
 
+<div>
+    <h1>Erfolgreich eingeloggt</h1>
+    <form id="logout">
+        <button id="logout" type="submit">Logout</button>
+    </form>
+</div>
     
 </body>
 </html>

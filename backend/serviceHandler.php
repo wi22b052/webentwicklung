@@ -1,5 +1,5 @@
 <?php
-include("logic/product.php");
+include("logic/requestHandler.php");
 
 $param = "";
 $method = "";
@@ -7,6 +7,8 @@ $method = "";
 isset($_GET["method"]) ? $method = $_GET["method"] : false;
 isset($_GET["param"]) ? $param = $_GET["param"] : false;
 
+isset($_POST["method"]) ? $method = $_POST["method"] : false;
+isset($_POST["param"]) ? $param = $_POST["param"] : false;
 
 $logic = new SimpleLogic();
 $result = $logic->handleRequest($method, $param);
