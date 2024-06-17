@@ -70,6 +70,23 @@ class SimpleLogic
                 $res = $this->dh->loadOrderByID($param);
                 break;
 
+            case "editProduct":
+                $res = $this->dh->editProduct($param);
+                break;
+
+            case "deleteProduct":
+                $res = $this->dh->deleteProduct($param);
+                break;
+            
+            case "addProduct":
+                $res = $this->dh->addProduct($param);
+                break;
+            
+            case "order":
+                $res = $this->dh->order();
+                break;
+            
+
             default:
                 $res = null;
                 break;

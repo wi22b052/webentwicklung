@@ -30,5 +30,5 @@ function response($method, $httpStatus, $data)
         default:
             http_response_code(405);
             echo ("Method not supported yet!");
-    }
+    }   
 }
