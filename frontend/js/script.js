@@ -27,10 +27,6 @@ $(document).ready(function () {
         logout();
     });
 
-    $('#adm_product').click(function (e) {
-        loaddata();
-    });
-
     $('#searchInput').on('input', function() {
         searchProducts();
     })
@@ -38,11 +34,16 @@ $(document).ready(function () {
 
 //Funktionen, die bei Klick auf eine ID/Klasse ausgeführt werden.
 $(document).on("click",".product",addtoCart);
-$(document).on("click",".edit",editProduct);
 $(document).on("click",".add",addOnetoCart);
 $(document).on("click",".subtract",subtractfromCard);
 $(document).on("click","#order",order);
 $(document).on("click",".rechnung",rechnung);
+$(document).on("click","#adm_product_load",loaddata);
+$(document).on("click","#adm_product_add",addproduct);
+$(document).on("click",".edit",editProduct);
+$(document).on("click",".delete",deleteProduct);
+$(document).on("click",".ed-save",editDB);
+$(document).on("click",".ad-sa",addDB);
 
 function groupAndCount(array) {
     const counts = {};
@@ -59,6 +60,9 @@ function groupAndCount(array) {
 }
 
 function loaddata() {
+    $("#adm_products").empty();
+    $("#edit_product").empty();
+    $("#adm_products").show();
     $.ajax({
         type: "GET",
         url: "../../backend/serviceHandler.php",
@@ -73,13 +77,14 @@ function loaddata() {
                 var price = val["price"];
                 var desc = val["description"];
                 var stock = val["stock"];
-                $("#adm_products").append("<div id='"+id+"'<h2>"+name+"</h2> </div>");
+                $("#adm_products").append("<div id='"+id+"'><h2>"+name+"</h2> </div>");
                 $("#"+id).append("<br>insert foto"+"<br>")
                 $("#"+id).append("ID: "+id)
                 $("#"+id).append("<h3>Preis: "+price+"</h3>")
                 $("#"+id).append("aktueller Lagerstand: "+stock+"<br>")
                 $("#"+id).append("Beschreibung: "+desc+"<br>")
                 $("#"+id).append("<p id="+id+" class='edit'>Bearbeiten</p>")
+                $("#"+id).append("<p id="+id+" class='delete'>Produkt löschen</p>")
                 $("#"+id).append("<br>")
 
                 //$("#poi-list").append("<li id="+key+" class='poi-item list-group-item'>"+name+"</li>")
@@ -274,32 +279,59 @@ function logout(){
 
 function editProduct(){
     console.log("Edit aufgerufen");
+    $("#meldungen").empty();
     var triggerElement = $(this).attr("id");
-    document.getElementById("adm_products").style.display = "none";
-
-    var editDiv = document.getElementById("edit_product");
-
-    //Load from DB
-
-    var pr_nam = document.createElement("input");
-    var pr_desc = document.createElement("input");
-    var pr_price = document.createElement("input");
-
-
-
-    var saveButton = document.createElement("button");
-    saveButton.innerHTML = "Speichern";
-
-    saveButton.addEventListener("click", function() {
-        editDB();
-    });
-
-    editDiv.appendChild(inputField);
-    editDiv.appendChild(saveButton);
+    $("#adm_products").hide();
+    $.ajax({
+        type: "GET",
+        url: "../../backend/serviceHandler.php",
+        cache: false,
+        data: {method: "loadProductByID", param: triggerElement},
+        dataType: "json",
+        success: function (response) {
+            $.each(response, function( ky, val ) {  
+                var name = val["name"];
+                var id = val["id"];
+                var price = val["price"];
+                console.log(name)
+                $("#edit_product").append("<br><div id=ed"+id+"></div>");
+                $("#ed"+id).append("<input type='text' id='ed-name' value='"+name+"'><br>")
+                $("#ed"+id).append("<input type='text' id='ed-price' value="+price+"><br><br>")
+                $("#ed"+id).append("<p>Neues Produktbild hochladen</p>")
+                $("#ed"+id).append('<input type="file" id="ed-pic"><br>');
+                $("#ed"+id).append("<button class='btn btn-success ed-save' id='sa"+id+"'>Speichern</button>");
+            })
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
+        }  
+    })
 }
 
 function editDB(){
-    console.log("DB aufgerufen hahahah");
+    var triggerElement = $(this).attr("id").substring(2);
+    newName = $('#ed-name').val();
+    newPrice = $('#ed-price').val();
+    newData = {triggerElement, newName, newPrice}
+    console.log(newData)
+    $.ajax({
+        type: "POST",
+        url: "../../backend/serviceHandler.php",
+        cache: false,
+        data: {method: "editProduct", param: newData},
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
+            $('#edit_product').empty();
+            $("#meldungen").append("<p>Änderungen erfolgreich durchgeführt!</p>");
+            $("#adm_products").show();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
+        }
+        
+    })
+
 }
 
 function subtractfromCard(){
@@ -378,6 +410,19 @@ function searchProducts(){
 
 function order(){
     console.log("Bestellung aufgerufen");
+    $.ajax({
+        type: "GET",
+        url: "../../backend/serviceHandler.php",
+        cache: false,
+        data: {method: "order"},
+        dataType: "json",
+        success: function (response) {
+            console.log(response)
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
+        }  
+    })
 }
 
 function loadOrders(){
@@ -481,6 +526,93 @@ function loadRechnung(){
         })
 
     })
+}
+
+function addproduct(){
+    console.log("addProduct aufgerufen");
+    $("#meldungen").empty();
+    $("#adm_products").hide();
+    $("#edit_products").empty();
+    $("#add").empty();
+    $("#edit_product").append("<br><div id='add'></div>");
+        $("#add").append("<input type='text' id='ad-name' placeholder='Name des Produktes'><br>")
+        $("#add").append("<input type='text' id='ad-price' placeholder='Preis des Produktes'><br>")
+        $("#add").append("<input type='text' id='ad-desc' placeholder='Beschreibung des Produktes'><br><br>")
+        $("#add").append("<input type='text' id='ad-kat' placeholder='Kategorie des Produktes'><br><br>")
+        $("#add").append("<p>Produktbild hochladen</p>")
+        $("#add").append('<input type="file" id="ad-pic"><br>');
+        $("#add").append("<button class='btn btn-success ad-sa' id='ad-sa'>Speichern</button>");
+
+    $.ajax({
+        type: "GET",
+        url: "../../backend/serviceHandler.php",
+        cache: false,
+        data: {method: "loadProductByID", param: triggerElement},
+        dataType: "json",
+        success: function (response) {
+            $.each(response, function( ky, val ) {  
+                var name = val["name"];
+                var id = val["id"];
+                var price = val["price"];
+                console.log(name)
+                $("#add").empty();
+                
+            })
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
+        }  
+    })
+}
+
+function deleteProduct(){
+    console.log("deleteProduct aufgerufen")
+    var triggerElement = $(this).attr("id");
+    $('#adm_products').empty();
+    $('#meldungen').empty();
+    $.ajax({
+        type: "POST",
+        url: "../../backend/serviceHandler.php",
+        cache: false,
+        data: {method: "deleteProduct", param: triggerElement},
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
+            $("#meldungen").append("<p>Produkt erfolgreich gelöscht</p>");
+            loaddata();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
+        }
+            
+        })
+    
+}
+
+function addDB(){
+    adName = $('#ad-name').val();
+    adPrice = $('#ad-price').val();
+    adDesc = $('#ad-desc').val();
+    adKat = $('#ad-kat').val();
+    newPr = {adName,adPrice,adDesc,adKat}
+    $.ajax({
+        type: "POST",
+        url: "../../backend/serviceHandler.php",
+        cache: false,
+        data: {method: "addProduct", param: newPr},
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
+            $("#meldungen").append("<p>Produkt erfolgreich hinzugefügt!</p>");
+            loaddata();
+            $("#adm_products").show();
+            $("#edit_products").empty();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
+        }
+            
+        })
 }
     
 

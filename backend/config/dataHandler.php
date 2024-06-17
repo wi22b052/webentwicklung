@@ -335,5 +335,53 @@ class DataHandler
         return $order_array;
     }
 
+    function editProduct($param){
+        $stmt = $this->db->prepare("UPDATE products SET name = :name, price = :preis WHERE id = :id;");
+        $stmt-> bindParam(':id', $param['triggerElement']);
+        $stmt-> bindParam(':name', $param['newName']);
+        $stmt-> bindParam(':preis', $param['newPrice']);
+        $stmt->execute();
+        return "Daten wurden in der Datenbank geändert.";
+    }
+
+    function deleteProduct($param) {
+        $stmt = $this->db->prepare("DELETE FROM products WHERE id = :id;");
+        $stmt->bindParam(':id', $param);
+        $stmt->execute();
+        return "Produkt wurde aus der Datenbank gelöscht.";
+    }
+
+    function addProduct($param){
+        $stmt = $this->db->prepare("INSERT INTO products (name, description, price, category) VALUES (:name, :description, :price, :category);");
+        $stmt->bindParam(':name', $param['adName']);
+        $stmt->bindParam(':description', $param['adDesc']);
+        $stmt->bindParam(':price', $param['adPrice']);
+        $stmt->bindParam(':category', $param['adKat']);
+        $stmt->execute();
+        return "Datensatz wurde in der Datenbank hinzugefügt.";
+    }
+
+    function order(){
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        //if (!isset($_SESSION['user'])) {
+        //    return "Nicht eingeloggt";
+        //}
+
+        
+        $us = 1;
+        $stmt = $this->db->prepare("INSERT INTO orders (user_id) VALUES (:us);");
+        $stmt->bindParam(':us', $us);
+        $stmt->execute();
+
+        $st = $this->db->query("SELECT id FROM `orders` ORDER BY id DESC LIMIT 1;");
+        $or = $st->fetch(PDO::FETCH_ASSOC);
+        return $or;
+        
+    }
+    
+
 
 }

@@ -42,9 +42,10 @@ Folgendes muss noch gelöscht werden und davor in CSS überarbeitet werden, dami
   <p>a</p>
   <p>a</p>
 
-<button type="button" class="btn btn-success" id="add_product">Produkt hinzufügen</button><br> 
-<button type="button" class="btn btn-success" id="adm_product">Produkte laden</button>
+<button type="button" class="btn btn-success" id="adm_product_add">Produkt hinzufügen</button><br> 
+<button type="button" class="btn btn-success" id="adm_product_load">Produkte laden</button>
 
+<div id="meldungen"></div>
 <div id="edit_product"></div>
 <div id="adm_products">  
 </div>

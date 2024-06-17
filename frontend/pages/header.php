@@ -26,6 +26,7 @@ $elemente_in_Warenkorb = count($_SESSION['cart']);
         }else{
         ?>
                 <li><a href="login.php">Login</a></li>
+                <li><a href="reg.php">Registrierung</a></li>
             <?php
             }
         ?>
