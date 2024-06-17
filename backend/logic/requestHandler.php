@@ -86,6 +86,10 @@ class SimpleLogic
                 $res = $this->dh->order();
                 break;
             
+            case "addCartToOrder":
+                $res = $this->dh->addCartToOrder($param);
+                break;
+            
 
             default:
                 $res = null;
