@@ -371,9 +371,8 @@ class DataHandler
         }
         $cart = $_SESSION['cart'];
         foreach ($cart as $element) {
-            $stmt = $this->db->prepare("INSERT INTO `order_items`(`order_id`, `product_id`, `quantity`; `price`) VALUES (:par,:ele,'1',:price);");
-            $stmt->bindParam(':par', $param['order']);
-            $stmt->bindParam(':par', $param['price']);
+            $stmt = $this->db->prepare("INSERT INTO `order_items`(`order_id`, `product_id`, `quantity`) VALUES (:par,:ele,'1');");
+            $stmt->bindParam(':par', $param);
             $stmt->bindParam(':ele', $element);
             $stmt->execute();
         }
