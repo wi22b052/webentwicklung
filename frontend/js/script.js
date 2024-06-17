@@ -417,7 +417,22 @@ function order(){
         data: {method: "order"},
         dataType: "json",
         success: function (response) {
-            console.log(response)
+            console.log(response);
+            respo = response["id"]
+            console.log(respo);
+            $.ajax({
+                type: "GET",
+                url: "../../backend/serviceHandler.php",
+                cache: false,
+                data: {method: "addCartToOrder", param: respo},
+                dataType: "json",
+                success: function (resp) {
+                    console.log(resp);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
+                }  
+            })
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
@@ -494,14 +509,15 @@ function loadRechnung(){
             success: function (response) {
                 $.each(response, function(key, values) {
                     nam = values["name"];
+                    pri = values["price"];
                     $("#pr"+val).append("ID: "+val)
                     $("#pr"+val).append("<br>Name: "+nam);
                     $("#pr"+val).append("<br>Menge: "+order['quantities'][key])
-                    $("#pr"+val).append("<br>Preis pro Stück: "+order['prices'][key])
-                    $("#pr"+val).append("<br>Preis: "+order['quantities'][key] * order['prices'][key]);
+                    $("#pr"+val).append("<br>Preis pro Stück: "+pri)
+                    $("#pr"+val).append("<br>Preis: "+order['quantities'][key] * pri);
                     $("#pr"+val).append("<br>")
                     $("#pr"+val).append("<br>")
-                    total_price += order['quantities'][key] * order['prices'][key];
+                    total_price += order['quantities'][key] * pri;
                     console.log(total_price)
                     $("#total").text("Gesamtsumme: "+total_price)
                 })

@@ -361,17 +361,36 @@ class DataHandler
         return "Datensatz wurde in der Datenbank hinzugefügt.";
     }
 
-    function order(){
+    public function addCartToOrder($param){
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
 
-        //if (!isset($_SESSION['user'])) {
-        //    return "Nicht eingeloggt";
-        //}
+        if (!isset($_SESSION['user'])) {
+            return "Nicht eingeloggt";
+        }
+        $cart = $_SESSION['cart'];
+        foreach ($cart as $element) {
+            $stmt = $this->db->prepare("INSERT INTO `order_items`(`order_id`, `product_id`, `quantity`; `price`) VALUES (:par,:ele,'1',:price);");
+            $stmt->bindParam(':par', $param['order']);
+            $stmt->bindParam(':par', $param['price']);
+            $stmt->bindParam(':ele', $element);
+            $stmt->execute();
+        }
+        return "Produkte wurden erfolgreich hinzugefügt.";
+    }
+
+    public function order(){
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if (!isset($_SESSION['user'])) {
+            return "Nicht eingeloggt";
+        }
 
         
-        $us = 1;
+        $us = $_SESSION['user'];
         $stmt = $this->db->prepare("INSERT INTO orders (user_id) VALUES (:us);");
         $stmt->bindParam(':us', $us);
         $stmt->execute();
@@ -381,6 +400,8 @@ class DataHandler
         return $or;
         
     }
+
+
     
 
 
