@@ -1,5 +1,7 @@
 <?php
+// Definition der Klasse Product
 class Product {
+    // Öffentliche Eigenschaften der Klasse Product
     public $id;
     public $name;
     public $description;
@@ -8,7 +10,9 @@ class Product {
     public $created_at;
     public $category;
     
+    // Konstruktor der Klasse, der beim Erstellen eines neuen Product-Objekts aufgerufen wird
     function __construct($id, $name, $price, $description, $stock, $created_at, $category){
+        // Initialisierung der Eigenschaften mit den übergebenen Werten
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;
@@ -19,13 +23,17 @@ class Product {
     }
 }
 
+// Definition der Klasse cart
 class cart {
+    // Öffentliche Eigenschaften der Klasse cart
     public $id;
     public $user_id;
     public $product_id;
     public $quantity;
     
+    // Konstruktor der Klasse, der beim Erstellen eines neuen cart-Objekts aufgerufen wird
     function __construct($id, $user_id, $product_id, $quantity){
+        // Initialisierung der Eigenschaften mit den übergebenen Werten
         $this->id = $id;
         $this->user_id = $user_id;
         $this->product_id = $product_id;
@@ -33,7 +41,9 @@ class cart {
     }
 }
 
+// Definition der Klasse user
 class user {
+    // Öffentliche Eigenschaften der Klasse user
     public $id;
     public $username;
     public $email;
@@ -46,8 +56,9 @@ class user {
     public $plz;
     public $ort;
 
-    
+    // Konstruktor der Klasse, der beim Erstellen eines neuen user-Objekts aufgerufen wird
     function __construct($id, $username, $email, $pword, $created_at, $anrede, $fname, $lname, $adresse, $plz, $ort){
+        // Initialisierung der Eigenschaften mit den übergebenen Werten
         $this->id = $id;
         $this->username = $username;
         $this->email = $email;
@@ -60,5 +71,4 @@ class user {
         $this->plz = $plz;
         $this->ort = $ort;
     }
-
 }
