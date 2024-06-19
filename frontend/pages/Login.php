@@ -60,7 +60,7 @@ include '../pages/header.php'
     </p>
     <br>
     <br>
-      <a href="reg.html" class="btn btn-primary">registrieren</a>
+      <a href="reg.php" class="btn btn-primary">registrieren</a>
     </div>
   </div>
 
