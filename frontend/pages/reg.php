@@ -77,6 +77,8 @@ include '../pages/header.php'
               </div>
               <p> Wir nutzen die E-Mail-Adresse für die Zusendung von Informationen rund um deine Bestellung. Eine Abmeldung ist jederzeit möglich</p>
               <p>Mit der Absendung meiner Registrierung stimme ich Datenschutzrichtlinien zu.</p>
+              <br>
+              <br>
               <button type="submit">Registrierung absenden</button>
             </form>
     </p>

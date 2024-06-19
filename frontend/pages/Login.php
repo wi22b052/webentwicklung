@@ -58,7 +58,9 @@ include '../pages/header.php'
         Deine Wunschliste auf allen Geräten
         Schnellerer, simpler Checkout
     </p>
-      <a href="reg.html" class="btn btn-primary">Jetzt registrieren</a>
+    <br>
+    <br>
+      <a href="reg.html" class="btn btn-primary">registrieren</a>
     </div>
   </div>
 
