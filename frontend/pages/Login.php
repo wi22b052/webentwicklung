@@ -13,18 +13,22 @@ include '../pages/header.php'
 
 
 <h1>LogIn</h1>
+<h1>LogIn</h1>
 <div class="card" style="width: 18rem;">
     <div class="card-body">
-      <h5 class="card-title">Du hast schon ein Konto?</h5>
-      <p class="card-text"><fieldset>
-        <form id="login">
-            <label for="username">Benutzername</label><br>
-            <input class="form-control" required type="text" id="username" name="username"><br>
-            <label for="pword1">Passwort</label><br>
-            <input type="password" id="pword" name="pword" /> <br><br>
-            <button type="submit" class="btn btn-primary">Anmelden</b>
-        </form>
-    </fieldset></p>
+        <h5 class="card-title">Du hast schon ein Konto?</h5>
+        <fieldset>
+            <form id="login">
+                <label for="username">Benutzername</label><br>
+                <input class="form-control" required type="text" id="username" name="username"><br>
+                <label for="pword1">Passwort</label><br>
+                <input type="password" id="pword" name="pword" /><br><br>
+                <button type="submit" class="btn btn-primary">Anmelden</button>
+            </form>
+        </fieldset>
+    </div>
+</div>
+
       
     </div>
   </div>
