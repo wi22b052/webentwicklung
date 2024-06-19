@@ -42,6 +42,7 @@ $(document).on("click", ".edit", editProduct);
 $(document).on("click", ".delete", deleteProduct);
 $(document).on("click", ".ed-save", editDB);
 $(document).on("click", ".ad-sa", addDB);
+$(document).on("click", "#adm_kunden_load", loadKunden);
 
 // Funktion zur Gruppierung und Zählung der Elemente in einem Array
 function groupAndCount(array) {
@@ -250,26 +251,36 @@ function registerUser() {
     var lname = $('#lname').val();
     var email = $('#email').val();
     var pword = $('#pword').val();
+    var pword2 = $('#pword2').val();
     var adresse = $('#adresse').val();
     var plz = $('#plz').val();
     var ort = $('#ort').val();
     var username = $('#username').val();
     var formdata = { anrede, fname, lname, email, pword, adresse, plz, ort, username };
     console.log(formdata);
-    // AJAX-POST-Anfrage zur Registrierung eines neuen Benutzers
-    $.ajax({
-        type: "POST",
-        url: "../../backend/serviceHandler.php",
-        cache: false,
-        data: { method: "addUser", param: formdata },
-        dataType: "json",
-        success: function (response) {
-            console.log(response);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
-        }
-    });
+
+    // Falls die Passwörter übereinstimmen, Ajax-Call aufrufen
+    if(pword == pword2){
+        // AJAX-POST-Anfrage zur Registrierung eines neuen Benutzers
+        $.ajax({
+            type: "POST",
+            url: "../../backend/serviceHandler.php",
+            cache: false,
+            data: { method: "addUser", param: formdata },
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                window.location.href = "Login.php";
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
+            }
+        });
+    }
+    else{
+        $('#meldug').append("<h2>Registrierung nicht erfolgreich.</h2>");
+    }
+    
 }
 // Funktion zur Benutzeranmeldung
 function login() {
@@ -284,10 +295,17 @@ function login() {
         data: { method: "login", param: data },
         dataType: "json",
         success: function (response) {
-            console.log(response);
-            window.location.href = "logout.php";
+            if(response == "Kein User vorhanden"){
+                $('#meld').append("<h2>Login war nicht erfolgreich.</h2>");
+            }
+            else{
+                console.log(response);
+                window.location.href = "logout.php";
+            }
+            
         },
         error: function (jqXHR, textStatus, errorThrown) {
+            console.log("Login nicht erfolgreich!")
             console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
         }
     });
@@ -307,6 +325,7 @@ function logout() {
         success: function (response) {
             if (response.success) {
                 console.log(response);
+                window.location.href = "Login.php";
             } else {
                 console.log("Logout fehlgeschlagen");
             }
@@ -475,6 +494,10 @@ function order() {
         data: { method: "order" },
         dataType: "json",
         success: function (response) {
+            if(response == "Nicht eingeloggt"){
+                window.location.href = "Login.php";
+            }
+            else{
             console.log(response);
             var respo = response["id"];
             console.log(respo);
@@ -486,13 +509,18 @@ function order() {
                 data: { method: "addCartToOrder", param: respo },
                 dataType: "json",
                 success: function (resp) {
-                    console.log(resp);
+                    if(resp == "Produkte wurden erfolgreich hinzugefügt."){
+                        console.log(resp);
+                        window.location.href = "Bestellungen.php";
+                    }
+                    
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
                 }
             });
-        },
+        }
+    },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
         }
@@ -714,6 +742,52 @@ function addDB() {
             console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
         }
     });
+}
+
+function loadKunden(){
+        // Leeren der HTML-Elemente mit den IDs "adm_kunden"
+        $("#adm_kunden").empty();
+        // Anzeigen des HTML-Elements mit der ID "adm_products"
+        $("#adm_kunden").show();
+        
+        // AJAX-Anfrage zum Abrufen der Produktdaten
+        $.ajax({
+            // Anfrage-Typ: GET
+            type: "GET",
+            // URL des Serverskripts
+            url: "../../backend/serviceHandler.php",
+            // Cache deaktivieren
+            cache: false,
+            // Daten, die an den Server gesendet werden
+            data: {method: "getCustomers"},
+            // Erwarteter Datentyp der Antwort: JSON
+            dataType: "json",
+            // Funktion, die bei erfolgreicher Anfrage ausgeführt wird
+            success: function (response) {
+                // Ausgabe der Antwort in der Konsole
+                console.log(response);
+                
+                //Durchlaufen der Antwortdaten und Verarbeiten jedes Users
+                $.each(response, function(key, val) { 
+                    // Extrahieren der Userdaten
+                    var username = val["username"];
+                    var id = val["id"];
+                    
+                    // Hinzufügen eines neuen Div-Elements für jeden User.
+                    $("#adm_kunden").append("<div id='us"+id+"'><h2>"+name+"</h2> </div>");
+                    // Hinzufügen von Userdetails zum neuen Div-Element
+                    $("#us"+id).append("ID: " + id);
+                    $("#us"+id).append("<h3>Benutzername: " + username + "</h3>");
+                    $("#us"+id).append("<p id=" + id + " class='show-orders'>Bestellungen anzeigen</p>");
+                    $("#us"+id).append("<br>");
+                });
+            },
+            // Funktion, die bei einem Fehler während der Anfrage ausgeführt wird
+            error: function(jqXHR, textStatus, errorThrown) {
+                // Ausgabe der Fehlermeldung in der Konsole
+                console.error("Fehler bei der Anfrage: ", textStatus, errorThrown);
+            }
+        });
 }
 
     

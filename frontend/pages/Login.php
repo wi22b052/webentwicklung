@@ -13,7 +13,7 @@ include '../pages/header.php'
 
 
 <h1>LogIn</h1>
-<h1>LogIn</h1>
+<div id="meld"></div>
 <div class="card" style="width: 18rem;">
     <div class="card-body">
         <h5 class="card-title">Du hast schon ein Konto?</h5>

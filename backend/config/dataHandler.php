@@ -64,10 +64,18 @@ class DataHandler
     // Methode zum Abrufen von Produkten nach Kategorie aus der Datenbank
     public function queryProductsByCategory($param)
     {
-        // SQL-Abfrage zum Abrufen der Produkte nach Kategorie ausführen
-        $stmt = $this->db->query("SELECT * FROM `products` WHERE `category` = '$param'");
+        // Vorbereitetes Statement erstellen
+        $stmt = $this->db->prepare("SELECT * FROM `products` WHERE `category` = :cat");
+
+        // Parameter an das vorbereitete Statement binden
+        $stmt->bindParam(':cat', $param);
+
+        // Statement ausführen
+        $stmt->execute();
+
         // Ergebnisse der Abfrage als Array abrufen
         $res = $stmt->fetchAll();
+
         // Leeres Array zum Speichern der Produktobjekte
         $products = [];
 
@@ -167,6 +175,7 @@ class DataHandler
             return "Kein User vorhanden";
         }
     }
+    
 
     // Methode zur Benutzerabmeldung
     public function logout(){
@@ -297,7 +306,7 @@ class DataHandler
         $userfromdb = $stmt->fetch(PDO::FETCH_ASSOC);
         if($userfromdb){
             // Benutzerdaten als Objekt zurückgeben
-            $userData = new AllUser($userfromdb['username'],$userfromdb['email'],$userfromdb['anrede'],$userfromdb['fname'],$userfromdb['lname'],$userfromdb['adresse'],$userfromdb['plz'],$userfromdb['ort']);
+            $userData = new AllUser($user,$userfromdb['username'],$userfromdb['email'],$userfromdb['anrede'],$userfromdb['fname'],$userfromdb['lname'],$userfromdb['adresse'],$userfromdb['plz'],$userfromdb['ort']);
             return $userData;
         } else {
             // Fehlermeldung zurückgeben, falls der Benutzer nicht eingeloggt ist
@@ -520,5 +529,31 @@ class DataHandler
         $st = $this->db->query("SELECT id FROM `orders` ORDER BY id DESC LIMIT 1;");
         $or = $st->fetch(PDO::FETCH_ASSOC);
         return $or;
+    }
+
+    public function getCustomers(){
+        // SQL-Abfrage zum Abrufen aller Produkte ausführen
+        $stmt = $this->db->query('SELECT * FROM users');
+        // Ergebnisse der Abfrage als Array abrufen
+        $res = $stmt->fetchAll();
+        // Leeres Array zum Speichern der Userobjekte
+        $customers = [];
+
+        // Durch die Ergebnisse iterieren und jedes Ergebnis in ein Userobjekt umwandeln
+        foreach ($res as $row){
+            $customers[] = new AllUser(
+                $row['id'],
+                $row['username'],
+                $row['email'],
+                $row['anrede'],
+                $row['fname'],
+                $row['lname'],
+                $row['adresse'],
+                $row['plz'],
+                $row['ort']
+            );
+        }
+        // Array der Userobjekte zurückgeben
+        return $customers;
     }
 }

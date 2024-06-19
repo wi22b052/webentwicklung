@@ -11,6 +11,7 @@ include '../pages/header.php'
 ?>
 
 <h1>Registrierung</h1>
+<div id="meldug"></div>
 <div class="card">
     <div class="card-body">
       <h5 class="card-title">Möchtest du ein Fun4Fans Konto anlegen?</h5>

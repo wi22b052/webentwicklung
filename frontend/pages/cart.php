@@ -11,7 +11,6 @@ include '../pages/header.php'
 ?>
 
 
-  
 <div id="cartproducts">  
 </div>
 <br>

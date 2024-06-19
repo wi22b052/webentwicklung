@@ -113,6 +113,11 @@ class SimpleLogic
                 $res = $this->dh->addCartToOrder($param);
                 break;
             
+            case "getCustomers":
+                // Laden der Kundendaten für den Admin
+                $res = $this->dh->getCustomers();
+                break;
+
             default:
                 // Standardfall, wenn die Methode nicht erkannt wird
                 $res = null;
