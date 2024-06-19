@@ -2,6 +2,7 @@
 // Definition der Klasse AllUser
 class AllUser {
     // Öffentliche Eigenschaften der Klasse AllUser
+    public $id;
     public $username;
     public $email;
     public $anrede;
@@ -12,8 +13,9 @@ class AllUser {
     public $ort;
     
     // Konstruktor der Klasse, der beim Erstellen eines neuen AllUser-Objekts aufgerufen wird
-    function __construct($username, $email, $anrede, $fname, $lname, $adresse, $plz, $ort){
+    function __construct($id, $username, $email, $anrede, $fname, $lname, $adresse, $plz, $ort){
         // Initialisierung der Eigenschaften mit den übergebenen Werten
+        $this->id = $id;
         $this->username = $username;
         $this->email = $email;
         $this->anrede = $anrede;
