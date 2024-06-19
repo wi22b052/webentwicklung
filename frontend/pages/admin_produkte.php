@@ -33,14 +33,6 @@ integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/
 include '../pages/header.php'
 ?>
 
-Folgendes muss noch gelöscht werden und davor in CSS überarbeitet werden, damit es schön aussieht.
-  <p>a</p>
-  <p>a</p>
-  <p>a</p>
-  <p>a</p>
-  <p>a</p>
-  <p>a</p>
-  <p>a</p>
 
 <button type="button" class="btn btn-success" id="adm_product_add">Produkt hinzufügen</button><br> 
 <button type="button" class="btn btn-success" id="adm_product_load">Produkte laden</button>
