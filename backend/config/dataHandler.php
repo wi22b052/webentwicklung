@@ -107,33 +107,40 @@ class DataHandler
 
     // Methode zum Hinzufügen eines Benutzers zur Datenbank
     public function addUser($param)
-    {
-        try {
-            // SQL-Statement zum Einfügen eines neuen Benutzers vorbereiten
-            $stmt = $this->db->prepare("INSERT INTO users (anrede, fname, lname, email, pword, adresse, plz, ort, username) VALUES (:anrede, :fname, :lname, :email, :pword, :adresse, :plz, :ort, :username)");
+{
+    try {
+        // Passwort hashen mit bcrypt Algorithmus
+        $hashedPassword = password_hash($param['pword'], PASSWORD_BCRYPT);
 
-            // Parameter an das vorbereitete Statement binden
-            $stmt->bindParam(':anrede', $param['anrede']);
-            $stmt->bindParam(':fname', $param['fname']);
-            $stmt->bindParam(':lname', $param['lname']);
-            $stmt->bindParam(':email', $param['email']);
-            $stmt->bindParam(':pword', $param['pword']);
-            $stmt->bindParam(':adresse', $param['adresse']);
-            $stmt->bindParam(':plz', $param['plz']);
-            $stmt->bindParam(':ort', $param['ort']);
-            $stmt->bindParam(':username', $param['username']);
+        // SQL-Statement zum Einfügen eines neuen Benutzers vorbereiten
+        $stmt = $this->db->prepare("INSERT INTO users (anrede, fname, lname, email, pword, adresse, plz, ort, username) VALUES (:anrede, :fname, :lname, :email, :pword, :adresse, :plz, :ort, :username)");
 
-            // Ausführen des Statements und Rückgabe einer Erfolgsmeldung
-            if ($stmt->execute()) {
-                return json_encode(["status" => "success", "message" => "User successfully added"]);
-            } else {
-                return json_encode(["status" => "error", "message" => "Execution failed"]);
-            }
-        } catch (PDOException $e) {
-            // Fehlermeldung zurückgeben, falls ein Fehler auftritt
-            return json_encode(["status" => "error", "message" => "Error: " . $e->getMessage()]);
+        // Parameter an das vorbereitete Statement binden
+        $stmt->bindParam(':anrede', $param['anrede']);
+        $stmt->bindParam(':fname', $param['fname']);
+        $stmt->bindParam(':lname', $param['lname']);
+        $stmt->bindParam(':email', $param['email']);
+        $stmt->bindParam(':pword', $hashedPassword); // Gehashtes Passwort binden
+        $stmt->bindParam(':adresse', $param['adresse']);
+        $stmt->bindParam(':plz', $param['plz']);
+        $stmt->bindParam(':ort', $param['ort']);
+        $stmt->bindParam(':username', $param['username']);
+
+        // SQL-Statement ausführen
+        if ($stmt->execute()) {
+            // Erfolgsmeldung zurückgeben, falls der Benutzer erfolgreich hinzugefügt wurde
+            return json_encode(["status" => "success", "message" => "User successfully added"]);
+        } else {
+            // Fehlermeldung zurückgeben, falls das Ausführen des Statements fehlschlägt
+            return json_encode(["status" => "error", "message" => "Execution failed"]);
         }
+    } catch (PDOException $e) {
+        // Fehlermeldung zurückgeben, falls ein PDO-Fehler auftritt
+        return json_encode(["status" => "error", "message" => "Error: " . $e->getMessage()]);
     }
+}
+
+    
 
     // Methode zur Benutzeranmeldung
     public function login($param)
@@ -298,41 +305,46 @@ class DataHandler
         }
     }
 
-    // Methode zum Aktualisieren der Benutzerdaten
     public function updateUser($param){
-        // Sitzung starten, falls noch nicht gestartet
+        // Prüfen, ob die Sitzung noch nicht gestartet wurde und starten, falls notwendig
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
     
-        // Fehlermeldung zurückgeben, falls der Benutzer nicht eingeloggt ist
+        // Prüfen, ob ein Benutzer eingeloggt ist
         if (!isset($_SESSION['user'])) {
             return "Nicht eingeloggt";
         }
     
-        // Benutzer-ID aus der Sitzung abrufen
+        // ID des eingeloggt Benutzers abrufen
         $userId = $_SESSION['user'];
+    
+        // Passwort hashen mit bcrypt Algorithmus
+        $hashedPassword = password_hash($param['pword'], PASSWORD_BCRYPT);
     
         // SQL-Statement zum Aktualisieren der Benutzerdaten vorbereiten
         $stmt = $this->db->prepare("UPDATE users SET anrede = :anrede, fname = :fname, lname = :lname, email = :email, pword = :pword, adresse = :adresse, plz = :plz, ort = :ort, username = :username WHERE id = :id");
-
+    
         // Parameter an das vorbereitete Statement binden
         $stmt->bindParam(':anrede', $param['anrede']);
         $stmt->bindParam(':fname', $param['fname']);
         $stmt->bindParam(':lname', $param['lname']);
         $stmt->bindParam(':email', $param['email']);
-        $stmt->bindParam(':pword', $param['pword']);
+        $stmt->bindParam(':pword', $hashedPassword); // Gehashtes Passwort binden
         $stmt->bindParam(':adresse', $param['adresse']);
         $stmt->bindParam(':plz', $param['plz']);
         $stmt->bindParam(':ort', $param['ort']);
         $stmt->bindParam(':username', $param['username']);
         $stmt->bindParam(':id', $userId);
-
-        // Ausführen des Statements und Erfolgsmeldung zurückgeben
+    
+        // SQL-Statement ausführen
         $stmt->execute();
-
+    
+        // Erfolgsmeldung zurückgeben
         return "Benutzerdaten aktualisiert";
     }
+    
+    
 
     // Methode zum Laden aller Bestellungen eines Benutzers
     public function loadOrders(){
