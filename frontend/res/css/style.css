@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 
+/* Farben und Standardwerte definieren */
 :root {
     --main-color: #d3ad7f;
     --black: #13131a;
@@ -7,6 +8,7 @@
     --border: .1rem solid rgba(255,255,255,.3);
 }
 
+/* Grundlegende Stile für alle Elemente */
 * {
     font-family: 'Roboto', sans-serif;
     margin: 0; padding: 0;
@@ -17,6 +19,7 @@
     transition: .2s linear;
 }
 
+/* Stile für das HTML-Element */
 html {
     font-size: 62.5%;
     overflow-x: hidden;
@@ -24,6 +27,7 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Scrollbar-Stile */
 html::-webkit-scrollbar {
     width: .8rem;
 }
@@ -37,7 +41,7 @@ html::-webkit-scrollbar-thumb {
     border-radius: 5rem;
 }
 
-/* Header */
+/* Header-Bereich */
 .header {
     background: var(--bg);
     display: flex;
@@ -50,22 +54,26 @@ html::-webkit-scrollbar-thumb {
     z-index: 1000;
 }
 
+/* Logo im Header */
 .header .logo img {
     height: 6rem;
 }
 
+/* Navigationslinks im Header */
 .header .navbar a {
     margin: 0 1rem;
     font-size: 1.6rem;
     color: #fff;
 }
 
+/* Hover-Effekt für Navigationslinks */
 .header .navbar a:hover {
     color: var(--main-color);
     border-bottom: .1rem solid var(--main-color);
     padding-bottom: .5rem;
 }
 
+/* Icons im Header */
 .header .icons i {
     color: #fff;
     cursor: pointer;
@@ -73,14 +81,17 @@ html::-webkit-scrollbar-thumb {
     margin-left: 2rem;
 }
 
+/* Hover-Effekt für Icons */
 .header .icons i:hover {
     color: var(--main-color);
 }
 
+/* Menü-Button */
 #menu-btn {
     display: none;
 }
 
+/* Suchformular im Header */
 .header .search-form {
     position: absolute;
     top: 115%; right: 7%;
@@ -93,6 +104,7 @@ html::-webkit-scrollbar-thumb {
     transform-origin: top;
 }
 
+/* Suchfeld im Header */
 .header .search-form input {
     height: 100%;
     width: 100%;
@@ -102,6 +114,7 @@ html::-webkit-scrollbar-thumb {
     text-transform: none;
 }
 
+/* Such-Icon im Header */
 .header .search-form label {
     cursor: pointer;
     font-size: 2.2rem;
@@ -109,18 +122,19 @@ html::-webkit-scrollbar-thumb {
     color: var(--black);
 }
 
+/* Hover-Effekt für das Such-Icon */
 .header .search-form label:hover {
     color: var(--main-color);
 }
 
-/* Main Content */
+/* Hauptinhalt */
 .main-content {
     padding: 10rem 7%;
     background: var(--bg);
     color: #fff;
 }
 
-/* Product Cards */
+/* Produktkarten */
 .product-card {
     background: #fff;
     color: var(--black);
@@ -131,34 +145,41 @@ html::-webkit-scrollbar-thumb {
     transition: transform .3s;
 }
 
+/* Bild in Produktkarte */
 .product-card img {
     width: 100%;
     height: auto;
 }
 
+/* Hover-Effekt für Produktkarte */
 .product-card:hover {
     transform: scale(1.05);
 }
 
+/* Details in Produktkarte */
 .product-card .details {
     padding: 1.5rem;
 }
 
+/* Titel in Produktkarte */
 .product-card .details h3 {
     font-size: 2rem;
     color: var(--black);
 }
 
+/* Beschreibung in Produktkarte */
 .product-card .details p {
     font-size: 1.6rem;
     margin: 1rem 0;
 }
 
+/* Preis in Produktkarte */
 .product-card .details .price {
     font-size: 2.2rem;
     color: var(--main-color);
 }
 
+/* Button 'In den Warenkorb' in Produktkarte */
 .product-card .details .add-to-cart {
     display: inline-block;
     margin-top: 1rem;
@@ -169,45 +190,52 @@ html::-webkit-scrollbar-thumb {
     cursor: pointer;
 }
 
+/* Hover-Effekt für 'In den Warenkorb' Button */
 .product-card .details .add-to-cart:hover {
     background: #fff;
     color: var(--main-color);
     border: var(--border);
 }
 
-/* Cart */
+/* Warenkorb */
 .cart {
     padding: 10rem 7%;
     background: var(--bg);
     color: #fff;
 }
 
+/* Tabelle im Warenkorb */
 .cart table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 2rem;
 }
 
+/* Tabellenzellen im Warenkorb */
 .cart table th, .cart table td {
     padding: 1rem;
     border: var(--border);
     text-align: left;
 }
 
+/* Tabellenkopf im Warenkorb */
 .cart table th {
     background: var(--main-color);
 }
 
+/* Produktbild in der Warenkorbtabelle */
 .cart table td img {
     width: 5rem;
     height: auto;
 }
 
+/* Gesamtsumme im Warenkorb */
 .cart .total {
     font-size: 2rem;
     text-align: right;
 }
 
+/* Checkout-Button im Warenkorb */
 .cart .checkout {
     display: inline-block;
     margin-top: 2rem;
@@ -218,6 +246,7 @@ html::-webkit-scrollbar-thumb {
     cursor: pointer;
 }
 
+/* Hover-Effekt für Checkout-Button */
 .cart .checkout:hover {
     background: #fff;
     color: var(--main-color);
@@ -233,6 +262,7 @@ html::-webkit-scrollbar-thumb {
     border-top: var(--border);
 }
 
+/* Text im Footer */
 .footer p {
     font-size: 1.4rem;
     margin: 1rem 0;
