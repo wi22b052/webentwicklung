@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
-
 /* Farben und Standardwerte definieren */
 :root {
     --main-color: #d3ad7f;
@@ -67,74 +65,54 @@ body {
 }
 
 /* Navigationslinks im Header */
+.header .navbar {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
 .header .navbar a {
-    margin: 0 1rem;
     font-size: 1.6rem;
     color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: .5rem;
 }
 
 /* Hover-Effekt für Navigationslinks */
 .header .navbar a:hover {
     color: var(--main-color);
-    border-bottom: .1rem solid var(--main-color);
-    padding-bottom: .5rem;
+    background: rgba(255,255,255,0.1);
 }
 
 /* Icons im Header */
-.header .icons i {
-    color: #fff;
-    cursor: pointer;
+.header .icons {
+    display: flex;
+    align-items: center;
+}
+
+.header .icons .cart-icon {
+    display: flex;
+    align-items: center;
     font-size: 2.5rem;
+    color: #fff;
     margin-left: 2rem;
+    cursor: pointer;
+}
+
+.header .icons .cart-icon h1 {
+    font-size: 2rem;
+    margin-left: 0.5rem;
+    color: var(--main-color);
 }
 
 /* Hover-Effekt für Icons */
-.header .icons i:hover {
+.header .icons .cart-icon:hover {
     color: var(--main-color);
 }
 
 /* Menü-Button */
 #menu-btn {
     display: none;
-}
-
-/* Suchformular im Header */
-.header .search-form {
-    position: absolute;
-    top: 115%; right: 7%;
-    background: #fff;
-    width: 50rem;
-    height: 5rem;
-    display: flex;
-    align-items: center;
-    border-radius: .5rem;
-    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
-    transform: scaleY(0);
-    transform-origin: top;
-}
-
-/* Suchfeld im Header */
-.header .search-form input {
-    height: 100%;
-    width: 100%;
-    font-size: 1.6rem;
-    color: var(--black);
-    padding: 1rem;
-    border: none;
-    border-radius: .5rem 0 0 .5rem;
-}
-
-/* Such-Icon im Header */
-.header .search-form label {
-    cursor: pointer;
-    font-size: 2.2rem;
-    margin-right: 1.5rem;
-    color: var(--black);
-}
-
-/* Hover-Effekt für das Such-Icon */
-.header .search-form label:hover {
-    color: var(--main-color);
 }
 
 /* Hauptinhalt */
@@ -147,7 +125,7 @@ body {
 /* Produktkarten */
 .product-card {
     background: #fff;
-    color: var (--black);
+    color: var(--black);
     border: var(--border);
     border-radius: .5rem;
     overflow: hidden;
@@ -309,63 +287,17 @@ body {
     font-size: 1.6rem;
 }
 
-.card button, .card .btn-primary {
-    width: 100%;
-    padding: 1rem;
-    background: var(--main-color);
-    color: #fff;
-    border: none;
-    border-radius: .5rem;
-    cursor: pointer;
-    font-size: 1.6rem;
-}
-
-.card button:hover, .card .btn-primary:hover {
-    background: #fff;
-    color: var(--main-color);
-    border: var(--border);
-}
-
-/* Suchseite */
-.search-page {
-    padding: 10rem 7%;
-    background: var(--bg);
-    color: #fff;
-    text-align: center;
-}
-
-.search-page input {
-    width: 50%;
-    padding: 1rem;
-    margin: 2rem 0;
-    border: var(--border);
-    border-radius: .5rem;
-    font-size: 1.6rem;
-}
-
-.search-page button {
+.card button, .card .btn-primary, .card .btn-success {
     padding: 1rem 2rem;
     background: var(--main-color);
     color: #fff;
-    border: none;
     border-radius: .5rem;
     cursor: pointer;
     font-size: 1.6rem;
-}
-
-.search-page button:hover {
-    background: #fff;
-    color: var(--main-color);
     border: var(--border);
 }
 
-.search-results {
-    margin: 2rem 0;
-    text-align: left;
-}
-
-.search-results .product-card {
-    display: inline-block;
-    width: 30%;
-    margin: 1rem;
+.card button:hover, .card .btn-primary:hover, .card .btn-success:hover {
+    background: #fff;
+    color: var(--main-color);
 }
