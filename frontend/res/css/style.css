@@ -181,7 +181,7 @@ body {
 /* Hover-Effekt für 'In den Warenkorb' Button */
 .product-card .details .add-to-cart:hover {
     background: #fff;
-    color: var(--main-color);
+    color: var (--main-color);
     border: var(--border);
 }
 
@@ -254,6 +254,7 @@ body {
 .footer p {
     font-size: 1.4rem;
     margin: 1rem 0;
+    color: #fff; /* Schriftfarbe im Footer auf weiß setzen */
 }
 
 /* Login- und Registrierungsformulare */
@@ -298,6 +299,55 @@ body {
 }
 
 .card button:hover, .card .btn-primary:hover, .card .btn-success:hover {
+    background: #fff;
+    color: var(--main-color);
+}
+
+/* Impressum- und Index-Seiten */
+body h1, body h2, body h3 {
+    color: var(--main-color);
+    margin: 2rem 0;
+    text-align: center;
+    font-size: 2.8rem; /* Schriftgröße der Überschriften */
+    padding: 1rem 0; /* Padding der Überschriften */
+}
+
+body p {
+    color: #000; /* Schriftfarbe für p-Elemente im Body auf schwarz setzen */
+    font-size: 1.6rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Icons in der Mitte und vergrößert auf der Indexseite */
+.features .col-md-4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.features i {
+    font-size: 4rem; /* Vergrößerung der Icons */
+    color: var(--main-color);
+    margin-bottom: 1rem;
+}
+
+/* Button 'Zum Shop' */
+#shop-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: var(--main-color);
+    color: #fff;
+    border-radius: .5rem;
+    cursor: pointer;
+    font-size: 1.6rem;
+    border: var(--border);
+    text-decoration: none;
+}
+
+#shop-btn:hover {
     background: #fff;
     color: var(--main-color);
 }
