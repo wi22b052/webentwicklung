@@ -6,6 +6,7 @@
     --black: #13131a;
     --bg: #010103;
     --border: .1rem solid rgba(255,255,255,.3);
+    --header-height: 9rem;
 }
 
 /* Grundlegende Stile für alle Elemente */
@@ -23,7 +24,7 @@
 html {
     font-size: 62.5%;
     overflow-x: hidden;
-    scroll-padding-top: 9rem;
+    scroll-padding-top: var(--header-height);
     scroll-behavior: smooth;
 }
 
@@ -41,6 +42,11 @@ html::-webkit-scrollbar-thumb {
     border-radius: 5rem;
 }
 
+/* Body mit Padding-Top, um den fixierten Header auszugleichen */
+body {
+    padding-top: var(--header-height);
+}
+
 /* Header-Bereich */
 .header {
     background: var(--bg);
@@ -51,6 +57,7 @@ html::-webkit-scrollbar-thumb {
     border-bottom: var(--border);
     position: fixed;
     top: 0; left: 0; right: 0;
+    height: var(--header-height);
     z-index: 1000;
 }
 
@@ -100,6 +107,8 @@ html::-webkit-scrollbar-thumb {
     height: 5rem;
     display: flex;
     align-items: center;
+    border-radius: .5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
     transform: scaleY(0);
     transform-origin: top;
 }
@@ -111,7 +120,8 @@ html::-webkit-scrollbar-thumb {
     font-size: 1.6rem;
     color: var(--black);
     padding: 1rem;
-    text-transform: none;
+    border: none;
+    border-radius: .5rem 0 0 .5rem;
 }
 
 /* Such-Icon im Header */
@@ -137,7 +147,7 @@ html::-webkit-scrollbar-thumb {
 /* Produktkarten */
 .product-card {
     background: #fff;
-    color: var(--black);
+    color: var (--black);
     border: var(--border);
     border-radius: .5rem;
     overflow: hidden;
@@ -236,7 +246,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 /* Checkout-Button im Warenkorb */
-.cart .checkout {
+.cart .checkout, #order, #adm_product_add, #adm_product_load, .btn-success, .form-control button {
     display: inline-block;
     margin-top: 2rem;
     padding: 1rem 2rem;
@@ -244,13 +254,13 @@ html::-webkit-scrollbar-thumb {
     color: #fff;
     border-radius: .5rem;
     cursor: pointer;
+    font-size: 1.6rem;
+    border: var(--border);
 }
 
-/* Hover-Effekt für Checkout-Button */
-.cart .checkout:hover {
+.cart .checkout:hover, #order:hover, #adm_product_add:hover, #adm_product_load:hover, .btn-success:hover, .form-control button:hover {
     background: #fff;
     color: var(--main-color);
-    border: var(--border);
 }
 
 /* Footer */
@@ -266,4 +276,96 @@ html::-webkit-scrollbar-thumb {
 .footer p {
     font-size: 1.4rem;
     margin: 1rem 0;
+}
+
+/* Login- und Registrierungsformulare */
+.card {
+    max-width: 40rem;
+    margin: 5rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: .5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.card h1, .card h2, .card h5 {
+    font-size: 2rem;
+    color: var(--black);
+    margin-bottom: 2rem;
+}
+
+.card label {
+    font-size: 1.6rem;
+    color: var(--black);
+}
+
+.card input, .card select, .card .form-control {
+    width: 100%;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: var(--border);
+    border-radius: .5rem;
+    font-size: 1.6rem;
+}
+
+.card button, .card .btn-primary {
+    width: 100%;
+    padding: 1rem;
+    background: var(--main-color);
+    color: #fff;
+    border: none;
+    border-radius: .5rem;
+    cursor: pointer;
+    font-size: 1.6rem;
+}
+
+.card button:hover, .card .btn-primary:hover {
+    background: #fff;
+    color: var(--main-color);
+    border: var(--border);
+}
+
+/* Suchseite */
+.search-page {
+    padding: 10rem 7%;
+    background: var(--bg);
+    color: #fff;
+    text-align: center;
+}
+
+.search-page input {
+    width: 50%;
+    padding: 1rem;
+    margin: 2rem 0;
+    border: var(--border);
+    border-radius: .5rem;
+    font-size: 1.6rem;
+}
+
+.search-page button {
+    padding: 1rem 2rem;
+    background: var(--main-color);
+    color: #fff;
+    border: none;
+    border-radius: .5rem;
+    cursor: pointer;
+    font-size: 1.6rem;
+}
+
+.search-page button:hover {
+    background: #fff;
+    color: var(--main-color);
+    border: var(--border);
+}
+
+.search-results {
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.search-results .product-card {
+    display: inline-block;
+    width: 30%;
+    margin: 1rem;
 }

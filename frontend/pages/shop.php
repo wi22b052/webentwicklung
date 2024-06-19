@@ -33,15 +33,6 @@ integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/
 include '../pages/header.php'
 ?>
 
-Folgendes muss noch gelöscht werden und davor in CSS überarbeitet werden, damit es schön aussieht.
-  <p>a</p>
-  <p>a</p>
-  <p>a</p>
-  <p>a</p>
-  <p>a</p>
-  <p>a</p>
-  <p>a</p>
-
 <input type="text" class="form-control" id="kategorie" placeholder="Kategorie eingeben">
 <button type="button" class="btn btn-success" id="btn_Kat">Produkte laden</button>
 <br>
